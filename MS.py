@@ -2,6 +2,7 @@ from pygame import *
 import numpy as np
 import sys
 w, h = 300, 300
+xmin, xmax, ymin, ymax = -2.5, 1.5, -2, 2
 figure = [[0 for i in range(w)] for i in range(h)]
 init()
 root = display.set_mode((w, h))
@@ -13,7 +14,7 @@ def getFigure():
             draw.circle(root, (figure[i][j] % 255, figure[i][j] % 255, figure[i][j] % 255), (i, j), 0, 1)
 
 def generateMS():
-    xmin, xmax, ymin, ymax = -2.5, 1.5, -2, 2
+    global xmin, xmax, ymin, ymax
     infBorder = 4
     maxIter = 255
     for ix, x in enumerate(np.linspace(xmin, xmax, h)):
@@ -40,4 +41,7 @@ while True:
             display.quit()
             sys.exit()
             break
+        elif i.type == MOUSEBUTTONDOWN:
+            pos = mouse.get_pos()
+            #xmin, xmax =
     display.flip()

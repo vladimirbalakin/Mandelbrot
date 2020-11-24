@@ -26,7 +26,7 @@ def generateJS(c):
                 z = (z*z) + c
                 #print(z)
                 if abs(z) > infBorder:
-                    figure[ix][iy] = k
+                    figure[ix][iy] = 3 * k
                     draw.circle(root, (figure[ix][iy] % 255, figure[ix][iy] % 255, figure[ix][iy] % 255), (ix, iy), 1, 1)
                     break
     #getFigure()
@@ -35,11 +35,12 @@ def generateJS(c):
 
 a = 0  #(0..2*Pi)
 r = 0.7885
-for a in np.linspace(0, 2 * pi, 30):
+for ia, a in enumerate(np.linspace(0, 2 * pi, 75)):
     c = r * cos(a) + 1j * r * sin(a)
     #c = -1.285 + 0.01j
     generateJS(c)
     display.flip()
+    image.save(root, str(ia) + ".png")
     #sleep(0.1)
 #draw.circle(root, (255, 0, 0), (50, 50), 0, 3)
 while True:
